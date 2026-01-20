@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Staff Hub</title>
+  <meta name="description" content="Internal staff hub: links, Airtable dashboards, forms." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">S</div>
+        <div>
+          <div class="brand-title">Staff Hub</div>
+          <div class="brand-subtitle">Links • Dashboards • Forms</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link active" href="./index.html">Home</a>
+        <a class="nav-link" href="./links.html">Links</a>
+        <a class="nav-link" href="./dashboards.html">Dashboards</a>
+        <a class="nav-link" href="./forms.html">Forms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome</h1>
+      <p class="muted">
+        This is the internal staff microsite. Use the tabs above to access shared links,
+        Airtable dashboards, and forms.
+      </p>
+
+      <div class="grid">
+        <a class="card" href="./links.html">
+          <h2>Important Links</h2>
+          <p class="muted">Policies, shared drives, vendor portals, SOPs.</p>
+        </a>
+
+        <a class="card" href="./dashboards.html">
+          <h2>Airtable Dashboards</h2>
+          <p class="muted">Embedded Interfaces and live views.</p>
+        </a>
+
+        <a class="card" href="./forms.html">
+          <h2>Submit Info</h2>
+          <p class="muted">Log maintenance, requests, incidents, etc.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel">
+        <h3>Quick announcements</h3>
+        <ul id="announcements" class="list">
+          <!-- Populated from content.json -->
+        </ul>
+        <p class="hint muted">
+          Edit <code>content.json</code> to update announcements and links without touching HTML.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Contact / escalation</h3>
+        <div class="kv">
+          <div class="k">Operations</div><div class="v">ops@yourorg.org</div>
+          <div class="k">Facilities</div><div class="v">facilities@yourorg.org</div>
+          <div class="k">IT / Accounts</div><div class="v">it@yourorg.org</div>
+        </div>
+        <p class="hint muted">
+          Replace with real contacts, or link to your SOP / phone tree.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      <span>Staff Hub</span>
+      <span class="dot">•</span>
+      <span id="buildInfo"></span>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
