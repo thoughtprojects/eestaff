@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Staff Hub — Forms</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">S</div>
+        <div>
+          <div class="brand-title">Staff Hub</div>
+          <div class="brand-subtitle">Links • Dashboards • Forms</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./links.html">Links</a>
+        <a class="nav-link" href="./dashboards.html">Dashboards</a>
+        <a class="nav-link active" href="./forms.html">Forms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Submit Info</h1>
+      <p class="muted">
+        These can be Airtable forms or any other form embed. Update in <code>content.json</code>.
+      </p>
+    </section>
+
+    <section id="forms" class="stack">
+      <!-- Populated from content.json -->
+    </section>
+
+    <footer class="footer muted">
+      <span>Staff Hub</span><span class="dot">•</span><span id="buildInfo"></span>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
