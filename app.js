@@ -2,6 +2,16 @@
    app.js
    Loads content.json and renders dynamic sections
    ========================================================= */
+function resizeAirtableEmbeds() {
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  document.querySelectorAll("iframe.airtable-embed").forEach((iframe) => {
+    iframe.style.height = isMobile ? "900px" : "600px";
+  });
+}
+
+window.addEventListener("load", resizeAirtableEmbeds);
+window.addEventListener("resize", resizeAirtableEmbeds);
+
 
 async function loadContent() {
   try {
