@@ -1,0 +1,57 @@
+{
+  "announcements": [
+    {
+      "text": "Weekly all-staff meeting: Mondays at 10:00am",
+      "url": ""
+    },
+    {
+      "text": "Submit facilities issues using the form",
+      "url": "./forms.html"
+    }
+  ],
+
+  "linkGroups": [
+    {
+      "title": "Operations",
+      "links": [
+        {
+          "label": "Staff Schedule",
+          "url": "https://example.com",
+          "note": "View only"
+        },
+        {
+          "label": "SOP Library (Drive)",
+          "url": "https://example.com",
+          "note": "Policies + procedures"
+        }
+      ]
+    },
+
+    {
+      "title": "Facilities",
+      "links": [
+        {
+          "label": "Work Order Tracker",
+          "url": "https://airtable.com/...",
+          "note": "Internal"
+        }
+      ]
+    }
+  ],
+
+  "dashboards": [
+    {
+      "title": "Operations Dashboard",
+      "description": "Live Airtable Interface",
+      "embedUrl": "https://airtable.com/embed/shrXXXXXXXX"
+    }
+  ],
+
+  "forms": [
+    {
+      "title": "Facilities Request Form",
+      "description": "Submit maintenance issues",
+      "embedUrl": "https://airtable.com/embed/shrYYYYYYYY"
+    }
+  ]
+}
