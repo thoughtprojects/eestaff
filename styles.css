@@ -90,6 +90,56 @@ body{
   background:rgba(78,161,255,.10);
 }
 
+/* Action buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(78,161,255,.55);
+  background: linear-gradient(
+    180deg,
+    rgba(78,161,255,.22),
+    rgba(78,161,255,.12)
+  );
+  color:var(--text);
+  font-weight:600;
+  text-decoration:none;
+  cursor:pointer;
+  transition: transform .05s ease, border-color .15s ease, background .15s ease;
+}
+
+.btn:hover{
+  border-color:rgba(78,161,255,.85);
+  background: linear-gradient(
+    180deg,
+    rgba(78,161,255,.35),
+    rgba(78,161,255,.18)
+  );
+}
+
+.btn:active{
+  transform: translateY(1px);
+}
+
+/* Secondary / neutral button */
+.btn.secondary{
+  border-color: rgba(34,48,68,.8);
+  background: rgba(16,27,40,.55);
+}
+
+.btn.secondary:hover{
+  border-color: rgba(78,161,255,.45);
+}
+
+/* Full-width button (great on mobile) */
+.btn.block{
+  width:100%;
+}
+
+
 /* Typography */
 h1{ margin:0 0 8px; font-size:32px; }
 h2{ margin:0 0 6px; font-size:18px; }
