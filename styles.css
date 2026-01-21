@@ -138,6 +138,53 @@ body{
 .btn.block{
   width:100%;
 }
+/* MJ page two-column layout */
+.mj-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 10px 0 26px;
+}
+
+@media (max-width: 860px){
+  .mj-grid{ grid-template-columns: 1fr; }
+}
+
+/* Stacked big buttons */
+.btn-stack{
+  display:grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Big, contrasty pill-ish buttons like your screenshot */
+.big-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  padding: 14px 14px;
+  border-radius: 14px;
+
+  background: rgba(120, 120, 255, .75);
+  border: 1px solid rgba(255,255,255,.10);
+
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-decoration: none;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+.big-btn:hover{
+  filter: brightness(1.08);
+}
+
+.big-btn:active{
+  transform: translateY(1px);
+}
 
 
 /* Typography */
