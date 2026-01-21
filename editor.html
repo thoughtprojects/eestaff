@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Staff Hub — Content Editor</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .editor-layout{ display:grid; grid-template-columns: 1fr; gap:12px; padding: 22px 0 26px; }
+    .editor-actions{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    textarea{
+      width:100%;
+      min-height: 60vh;
+      resize: vertical;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(34,48,68,.8);
+      background: rgba(16,27,40,.55);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .btn{
+      cursor:pointer;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(34,48,68,.8);
+      background: rgba(16,27,40,.55);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .btn:hover{ border-color: rgba(78,161,255,.55); }
+    .status{
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(34,48,68,.8);
+      background: rgba(15,22,32,.75);
+      color: var(--muted);
+      font-size: 13px;
+      flex: 1 1 auto;
+      min-width: 220px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">S</div>
+        <div>
+          <div class="brand-title">Staff Hub</div>
+          <div class="brand-subtitle">Links • Dashboards • Forms</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./links.html">Links</a>
+        <a class="nav-link" href="./dashboards.html">Dashboards</a>
+        <a class="nav-link" href="./forms.html">Forms</a>
+        <a class="nav-link active" href="./editor.html">Editor</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Content Editor</h1>
+      <p class="muted">
+        Edit <code>content.json</code> here, validate it, then download the updated file and upload it to GitHub.
+      </p>
+    </section>
+
+    <section class="editor-layout">
+      <div class="panel">
+        <div class="editor-actions">
+          <button class="btn" id="btnLoad">Load current content.json</button>
+          <button class="btn" id="btnValidate">Validate JSON</button>
+          <button class="btn" id="btnFormat">Format / Pretty-print</button>
+          <button class="btn" id="btnDownload">Download content.json</button>
+          <button class="btn" id="btnCopy">Copy to clipboard</button>
+          <span class="status" id="status">Ready.</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <textarea id="jsonText" spellcheck="false"></textarea>
+        <p class="hint muted">
+          Tip: after downloading, replace the repo’s <code>content.json</code> file and commit.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      <span>Staff Hub</span><span class="dot">•</span><span id="buildInfo"></span>
+    </footer>
+  </main>
+
+  <script src="./editor.js"></script>
+</body>
+</html>
