@@ -361,6 +361,17 @@ p{ margin:0 0 10px; line-height:1.5; }
   border:0;
 }
 
+.embed.compact iframe{
+  height: 520px;
+}
+
+@media (max-width: 720px){
+  .embed.compact iframe{
+    height: 800px;
+  }
+}
+
+
 /* Footer */
 .footer{
   padding:18px 0 26px;
