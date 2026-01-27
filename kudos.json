@@ -1,0 +1,43 @@
+{
+  "kudos": [
+    {
+      "id": "k001",
+      "from": "Sarah M.",
+      "to": "Carlos R.",
+      "message": "Thank you for staying late to help with the event setup. Your dedication made a huge difference!",
+      "category": "Going Above & Beyond",
+      "date": "2026-01-25T14:30:00Z",
+      "status": "approved",
+      "pinned": false
+    },
+    {
+      "id": "k002",
+      "from": "Team Lead",
+      "to": "Maria G.",
+      "message": "Your attention to detail on the maintenance reports has been outstanding. Thank you!",
+      "category": "Great Work",
+      "date": "2026-01-24T10:15:00Z",
+      "status": "approved",
+      "pinned": true
+    },
+    {
+      "id": "k003",
+      "from": "Anonymous",
+      "to": "Kitchen Staff",
+      "message": "The meals this week have been incredible. You all rock!",
+      "category": "Teamwork",
+      "date": "2026-01-23T12:00:00Z",
+      "status": "approved",
+      "pinned": false
+    }
+  ],
+  "categories": [
+    "Great Work",
+    "Teamwork",
+    "Going Above & Beyond",
+    "Problem Solving",
+    "Customer Service",
+    "Innovation",
+    "Other"
+  ]
+}

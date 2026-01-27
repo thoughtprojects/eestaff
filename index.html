@@ -6,6 +6,114 @@
   <title>Staff Hub</title>
   <meta name="description" content="Internal staff hub: links, Airtable dashboards, forms." />
   <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .kudos-showcase {
+      position: relative;
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(78,161,255,.15), rgba(122,252,200,.10));
+      border: 1px solid rgba(78,161,255,.3);
+      min-height: 200px;
+    }
+
+    .kudos-card {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .kudos-card.active {
+      opacity: 1;
+    }
+
+    .kudos-from-to {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .kudos-category-badge {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.25);
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .kudos-message {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .kudos-date {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .kudos-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(34,48,68,.5);
+    }
+
+    .kudos-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .kudos-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(167,179,195,.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .kudos-dot.active {
+      background: var(--accent);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .kudos-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .kudos-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(34,48,68,.8);
+      background: rgba(16,27,40,.6);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .kudos-btn:hover {
+      border-color: rgba(78,161,255,.6);
+      background: rgba(78,161,255,.15);
+    }
+
+    .kudos-empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -51,6 +159,25 @@
           <h2>Submit Info</h2>
           <p class="muted">Log maintenance, requests, incidents, etc.</p>
         </a>
+      </div>
+    </section>
+
+    <!-- 🎉 KUDOS SHOWCASE -->
+    <section class="stack">
+      <div class="group">
+        <div class="group-title">
+          <h2>🎉 Staff Kudos</h2>
+          <a class="pill-btn" href="./kudos-submit.html">
+            Give Kudos
+          </a>
+        </div>
+        <p class="muted">Celebrating our amazing team members!</p>
+        
+        <div id="kudosShowcase" class="kudos-showcase">
+          <div class="kudos-empty">
+            Loading kudos...
+          </div>
+        </div>
       </div>
     </section>
 
@@ -119,5 +246,6 @@
   </main>
 
   <script src="./app.js"></script>
+  <script src="./kudos.js"></script>
 </body>
 </html>

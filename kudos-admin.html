@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manage Kudos • Staff Hub Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(34, 48, 68, .8);
+      padding-bottom: 8px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(16, 27, 40, .55);
+    }
+
+    .tab-btn.active {
+      color: var(--text);
+      border-color: rgba(78, 161, 255, .55);
+      background: rgba(78, 161, 255, .10);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .kudos-item {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(16, 27, 40, .6);
+      border: 1px solid rgba(34, 48, 68, .8);
+      margin-bottom: 12px;
+    }
+
+    .kudos-item.pinned {
+      border-color: rgba(255, 215, 0, .6);
+      background: rgba(255, 215, 0, .08);
+    }
+
+    .kudos-item.pending {
+      border-color: rgba(255, 165, 0, .6);
+      background: rgba(255, 165, 0, .08);
+    }
+
+    .kudos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .kudos-meta {
+      flex: 1;
+    }
+
+    .kudos-from-to {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .kudos-category {
+      display: inline-block;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(78, 161, 255, .2);
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .kudos-date {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .kudos-message {
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .kudos-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(34, 48, 68, .8);
+      background: rgba(16, 27, 40, .5);
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .action-btn:hover {
+      border-color: rgba(78, 161, 255, .55);
+    }
+
+    .action-btn.approve {
+      border-color: rgba(122, 252, 200, .5);
+      background: rgba(122, 252, 200, .15);
+    }
+
+    .action-btn.reject,
+    .action-btn.delete {
+      border-color: rgba(255, 100, 100, .5);
+      background: rgba(255, 100, 100, .15);
+    }
+
+    .action-btn.pin {
+      border-color: rgba(255, 215, 0, .5);
+      background: rgba(255, 215, 0, .15);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(16, 27, 40, .6);
+      border: 1px solid rgba(34, 48, 68, .8);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .edit-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .edit-modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--panel);
+      border: 1px solid rgba(34, 48, 68, .8);
+      border-radius: 14px;
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(34, 48, 68, .8);
+      background: rgba(16, 27, 40, .6);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">S</div>
+        <div>
+          <div class="brand-title">Staff Hub</div>
+          <div class="brand-subtitle">Kudos Admin</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./editor.html">Editor</a>
+        <a class="nav-link active" href="./kudos-admin.html">Kudos Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Manage Kudos</h1>
+      <p class="muted">Review, approve, edit, and manage staff kudos.</p>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="statPending">0</div>
+        <div class="stat-label">Pending Review</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statApproved">0</div>
+        <div class="stat-label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statThisWeek">0</div>
+        <div class="stat-label">This Week</div>
+      </div>
+    </section>
+
+    <section class="stack">
+      <div class="group">
+        <div class="admin-tabs">
+          <button class="tab-btn active" data-tab="pending">Pending</button>
+          <button class="tab-btn" data-tab="approved">Approved</button>
+          <button class="tab-btn" data-tab="all">All Kudos</button>
+        </div>
+
+        <div id="pendingTab" class="tab-content active">
+          <div id="pendingList"></div>
+        </div>
+
+        <div id="approvedTab" class="tab-content">
+          <div id="approvedList"></div>
+        </div>
+
+        <div id="allTab" class="tab-content">
+          <div id="allList"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      <span>Staff Hub Admin</span><span class="dot">•</span><span id="buildInfo"></span>
+    </footer>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="edit-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Kudos</h2>
+        <button class="modal-close" onclick="closeEditModal()">×</button>
+      </div>
+      <form id="editForm">
+        <input type="hidden" id="editId" />
+        <div class="form-group">
+          <label class="form-label">From</label>
+          <input type="text" id="editFrom" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">To</label>
+          <input type="text" id="editTo" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea id="editMessage" class="form-textarea" required></textarea>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="submit" class="btn block">Save Changes</button>
+          <button type="button" class="btn secondary block" onclick="closeEditModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script src="./kudos-admin.js"></script>
+</body>
+</html>
